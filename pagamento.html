@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento - Avalie Seu Inquilino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Avalie Seu Inquilino</div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <!-- <li><a href="index.html#analisar">Analisar Inquilino</a></li> -->
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="quem-somos.html">Quem Somos</a></li>
+                <li><a href="index.html#calcular">Calcular Economia</a></li>
+                <li><a href="planos.html">Planos</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+                <li><a href="cadastro.html" class="btn-cadastro">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo da Página de Pagamento -->
+    <main class="container">
+        <section class="payment-page">
+            <h1 class="payment-title">Finalizar Pagamento</h1>
+
+            <div class="payment-content">
+                <!-- Seleção de Plano -->
+                <div class="plan-selection">
+                    <h2>Escolha Seu Plano</h2>
+                    <form id="payment-form" class="payment-form">
+                        <div class="form-group">
+                            <label for="plan">Plano ou Pacote</label>
+                            <select id="plan" name="plan" required>
+                                <option value="" disabled selected>Selecione um plano</option>
+                                <!-- Pesquisa Individual -->
+                                <option value="individual">Pesquisa Individual - R$ 20,00</option>
+                                <!-- Planos Mensais -->
+                                <option value="basico-mensal">Básico Mensal (10 pesquisas) - R$ 150,00</option>
+                                <option value="intermediario-mensal">Intermediário Mensal (25 pesquisas) - R$ 300,00</option>
+                                <option value="avancado-mensal">Avançado Mensal (50 pesquisas) - R$ 500,00</option>
+                                <!-- Planos Anuais -->
+                                <option value="basico-anual">Básico Anual (120 pesquisas) - R$ 1.350,00</option>
+                                <option value="intermediario-anual">Intermediário Anual (300 pesquisas) - R$ 2.700,00</option>
+                                <option value="avancado-anual">Avançado Anual (600 pesquisas) - R$ 4.500,00</option>
+                                <!-- Pacotes Grandes -->
+                                <option value="2000-pesquisas">2.000 Pesquisas - R$ 16.000,00</option>
+                                <option value="5000-pesquisas">5.000 Pesquisas - R$ 35.000,00</option>
+                                <option value="ilimitado">Ilimitado (12 meses) - R$ 50.000,00</option>
+                            </select>
+                        </div>
+
+                        <!-- Informações de Pagamento -->
+                        <h2>Detalhes de Pagamento</h2>
+                        <div class="form-group">
+                            <label for="payment-method">Método de Pagamento</label>
+                            <select id="payment-method" name="payment-method" required>
+                                <option value="" disabled selected>Selecione um método</option>
+                                <option value="credit-card">Cartão de Crédito</option>
+                                <option value="boleto">Boleto Bancário</option>
+                                <option value="pix">PIX</option>
+                            </select>
+                        </div>
+
+                        <!-- Campos para Cartão de Crédito -->
+                        <div id="credit-card-fields" class="payment-details" style="display: none;">
+                            <div class="form-group">
+                                <label for="card-number">Número do Cartão</label>
+                                <input type="text" id="card-number" name="card-number" placeholder="XXXX XXXX XXXX XXXX" maxlength="19">
+                            </div>
+                            <div class="form-group">
+                                <label for="card-name">Nome no Cartão</label>
+                                <input type="text" id="card-name" name="card-name" placeholder="Nome completo">
+                            </div>
+                            <div class="form-group inline-group">
+                                <div>
+                                    <label for="card-expiry">Validade</label>
+                                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div>
+                                    <label for="card-cvc">CVC</label>
+                                    <input type="text" id="card-cvc" name="card-cvc" placeholder="XXX" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resumo do Pedido -->
+                        <div class="order-summary">
+                            <h3>Resumo do Pedido</h3>
+                            <p><strong>Plano Selecionado:</strong> <span id="selected-plan">Nenhum plano selecionado</span></p>
+                            <p><strong>Total:</strong> <span id="total-amount">R$ 0,00</span></p>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Confirmar Pagamento</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        (function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91b5aec53e90bd21',t:'MTc0MTEzNjQ5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();
+    </script>
+</body>
+</html>

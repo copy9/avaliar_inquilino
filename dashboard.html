@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Avalie Seu Inquilino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Avalie Seu Inquilino</div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="index.html#quem-somos">Quem Somos</a></li>
+                <li><a href="index.html#calcular">Calcular Economia</a></li>
+                <li><a href="planos.html">Planos</a></li>
+                <li>
+                    <a href="#" class="btn-notifications" id="notifications">
+                        <img src="images/aviso.png" alt="Ícone de avisos" class="notification-icon">
+                        <span id="notification-count" class="notification-count">0</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="user-profile">
+                        <img src="images/user-avatar.png" alt="Foto do usuário" class="user-avatar" id="user-avatar-header">
+                        <span id="user-name-header">João Silva</span>
+                    </div>
+                </li>
+                <li><a href="#" class="btn-login" id="logout">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo do Dashboard -->
+    <main class="container dashboard">
+        <h1>Bem-vindo ao seu Dashboard</h1>
+
+        <!-- Seção de Verificação de Conta (Recolhível) -->
+        <section class="dashboard-section verification" id="verification-section">
+            <div class="collapse-header">
+                <h2>Verificação de Conta</h2>
+                <button class="collapse-toggle" id="toggle-verification">+</button>
+            </div>
+            <div class="collapse-content" id="verification-content">
+                <div class="verification-info">
+                    <p>Para garantir a segurança da plataforma, precisamos verificar sua identidade e vínculo com imóveis alugados.</p>
+                    <form id="verification-form" class="verification-form">
+                        <div class="form-group">
+                            <label for="documento">Documento (RG ou CNH)</label>
+                            <input type="file" id="documento" name="documento" accept=".pdf,.jpg,.png" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="foto">Foto do Rosto</label>
+                            <input type="file" id="foto" name="foto" accept=".jpg,.png" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="selfie">Selfie com Documento</label>
+                            <input type="file" id="selfie" name="selfie" accept=".jpg,.png" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="comprovante">Comprovante de Propriedade</label>
+                            <input type="file" id="comprovante" name="comprovante" accept=".pdf,.jpg,.png" required>
+                        </div>
+                        <button type="submit" class="btn-submit">Enviar Verificação</button>
+                    </form>
+                    <p class="verification-status">Status: <span id="verification-status">Pendente</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Perfil -->
+        <section class="dashboard-section profile">
+            <h2>Seu Perfil</h2>
+            <div class="profile-info">
+                <p><strong>Nome:</strong> <span id="user-name">João Silva</span></p>
+                <p><strong>E-mail:</strong> <span id="user-email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b3ddd0ded29d80dadf85d2f3d6ded2dadf9dd0dcde">[email protected]</a></span></p>
+                <button class="btn-edit" id="open-edit-profile">Editar Perfil</button>
+            </div>
+        </section>
+
+        <!-- Seção de Ações -->
+        <section class="dashboard-section actions">
+            <h2>Ações Rápidas</h2>
+            <div class="actions-grid">
+                <div class="action-item">
+                    <img src="images/search.png" alt="Ícone de busca" class="action-icon">
+                    <h3>Analisar Inquilino</h3>
+                    <form id="analisar-form" class="analisar-form">
+                        <div class="form-group">
+                            <label for="inquilino-nome">Nome</label>
+                            <input type="text" id="inquilino-nome" name="nome" placeholder="Digite o nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inquilino-cpf">CPF</label>
+                            <input type="text" id="inquilino-cpf" name="cpf" placeholder="Digite o CPF" required>
+                        </div>
+                        <button type="submit" class="btn-action">Analisar</button>
+                    </form>
+                </div>
+                <div class="action-item">
+                    <img src="images/avaliar.png" alt="Ícone de avaliação" class="action-icon">
+                    <h3>Avaliar Inquilino</h3>
+                    <button class="btn-action" id="open-avaliar-modal">Avaliar</button>
+                </div>
+            </div>
+            <div id="analise-resultado" class="analise-resultado" style="display: none;">
+                <h3>Resultado da Análise</h3>
+                <div id="resultado-detalhes"></div>
+            </div>
+        </section>
+
+        <!-- Seção de Histórico -->
+        <section class="dashboard-section history">
+            <h2>Histórico de Avaliações</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Inquilino</th>
+                        <th>Data</th>
+                        <th>Avaliação</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody id="historico-tbody">
+                    <tr data-id="1">
+                        <td>Maria Oliveira</td>
+                        <td>01/03/2025</td>
+                        <td>Positiva</td>
+                        <td><button class="btn-view">Ver Detalhes</button></td>
+                    </tr>
+                    <tr data-id="2">
+                        <td>Pedro Santos</td>
+                        <td>15/02/2025</td>
+                        <td>Negativa</td>
+                        <td><button class="btn-view">Ver Detalhes</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- Modal para Detalhes da Avaliação -->
+    <div id="avaliacao-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close">×</span>
+            <h2>Detalhes da Avaliação</h2>
+            <div id="avaliacao-detalhes"></div>
+        </div>
+    </div>
+
+    <!-- Modal para Avaliar Inquilino -->
+    <div id="avaliar-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" id="close-avaliar-modal">×</span>
+            <h2>Avaliar Inquilino</h2>
+            <form id="avaliar-form" class="auth-form">
+                <div class="form-group">
+                    <label for="avaliar-nome">Nome do Inquilino</label>
+                    <input type="text" id="avaliar-nome" name="nome" placeholder="Digite o nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="avaliar-cpf">CPF do Inquilino</label>
+                    <input type="text" id="avaliar-cpf" name="cpf" placeholder="Digite o CPF" required>
+                </div>
+                <div class="form-group">
+                    <label>Bom Pagador</label>
+                    <div class="estrelas" data-campo="bomPagador"></div>
+                </div>
+                <div class="form-group">
+                    <label>Higiene</label>
+                    <div class="estrelas" data-campo="higiene"></div>
+                </div>
+                <div class="form-group">
+                    <label>Convivência com Vizinhos</label>
+                    <div class="estrelas" data-campo="convivênciaVizinhos"></div>
+                </div>
+                <div class="form-group">
+                    <label>Pagamentos em Dia</label>
+                    <div class="estrelas" data-campo="pagamentosEmDia"></div>
+                </div>
+                <div class="form-group">
+                    <label>Danos ao Imóvel</label>
+                    <div class="estrelas" data-campo="danosImovel"></div>
+                </div>
+                <div class="form-group">
+                    <label for="avaliar-comentario">Comentário</label>
+                    <textarea id="avaliar-comentario" name="comentario" placeholder="Escreva seu comentário" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Fotos (Estragos ou Melhorias)</label>
+                    <input type="file" id="avaliar-fotos" name="fotos" multiple accept="image/*">
+                    <div id="fotos-preview" class="fotos-grid"></div>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Avaliação</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para Editar Perfil -->
+    <div id="edit-profile-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" id="close-edit-profile">×</span>
+            <h2>Editar Perfil</h2>
+            <form id="edit-profile-form" class="auth-form">
+                <div class="form-group">
+                    <label for="edit-name">Nome</label>
+                    <input type="text" id="edit-name" name="name" value="João Silva" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-email">E-mail</label>
+                    <input type="email" id="edit-email" name="email" value="joao.silva@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-avatar">Foto de Perfil</label>
+                    <input type="file" id="edit-avatar" name="avatar" accept="image/*">
+                    <div id="avatar-preview" class="avatar-preview">
+                        <img src="images/user-avatar.png" alt="Prévia da foto" id="avatar-preview-img">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Lightbox para Visualização de Fotos -->
+    <div id="lightbox" class="lightbox" style="display: none;">
+        <span class="lightbox-close">×</span>
+        <img id="lightbox-image" class="lightbox-image" src="" alt="Imagem ampliada">
+    </div>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="script.js"></script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91b638211de85afe',t:'MTc0MTE0MjExOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

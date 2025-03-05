@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Economia - Avalie Seu Inquilino</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Avalie Seu Inquilino</div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+            <!--<li><a href="index.html#analisar">Analisar Inquilino</a></li>-->
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="quem-somos.html">Quem Somos</a></li>
+                <li><a href="planos.html">Planos</a></li>               
+                <li><a href="calcular-economia.html">Calcular Economia</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+                <li><a href="cadastro.html" class="btn-cadastro">Cadastro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo da Página Calcular Economia -->
+    <main class="container">
+        <section class="section" id="calcular">
+            <h1>Quanto Você Pode Economizar?</h1>
+            <p class="intro-text">Evite prejuízos financeiros e dores de cabeça com a <strong>Avalie Seu Inquilino</strong>. Use nossa calculadora para ver o impacto real de escolher o inquilino certo!</p>
+
+            <!-- Formulário da Calculadora -->
+            <div class="calculator-section">
+                <h2>Simule Seu Lucro e Perda</h2>
+                <form id="calcular-form" class="auth-form calculator-form">
+                    <div class="form-group">
+                        <label for="valor-aluguel">Valor Mensal do Aluguel (R$)</label>
+                        <input type="number" id="valor-aluguel" name="valor-aluguel" placeholder="Ex: 1500" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="meses-locacao">Meses de Locação Previstos</label>
+                        <input type="number" id="meses-locacao" name="meses-locacao" placeholder="Ex: 12" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inquilino-perfil">Perfil do Inquilino Evitado</label>
+                        <select id="inquilino-perfil" name="inquilino-perfil" required>
+                            <option value="" disabled selected>Selecione um perfil</option>
+                            <option value="bom">Inquilino Bom (Ex: Maria Oliveira)</option>
+                            <option value="mau">Inquilino Mau (Ex: Pedro Santos)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit btn-calcular">Calcular Agora</button>
+                </form>
+
+                <!-- Resultado -->
+                <div id="resultado-calculo" class="resultado-pnl" style="display: none;">
+                    <h3>Seu Painel de Lucro e Perda</h3>
+                    <div id="calculo-detalhes" class="pnl-details"></div>
+                    <div class="pnl-cta">
+                        <p>Com a <strong>Avalie Seu Inquilino</strong>, você evita esse prejuízo e protege seu bolso!</p>
+                        <a href="cadastro.html" class="btn-submit btn-join">Junte-se Agora</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefícios -->
+            <div class="benefits-pnl">
+                <h2>Por Que Usar a Plataforma?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item">
+                        <img src="money-icon.png" alt="Ícone de economia" class="benefit-icon">
+                        <h3>Economia Real</h3>
+                        <p>Evite perdas que podem chegar a milhares de reais com inquilinos problemáticos.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <img src="shield-icon.png" alt="Ícone de proteção" class="benefit-icon">
+                        <h3>Proteção Total</h3>
+                        <p>Dados confiáveis para decisões seguras, sem surpresas desagradáveis.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <img src="time-icon.png" alt="Ícone de tempo" class="benefit-icon">
+                        <h3>Agilidade</h3>
+                        <p>Analise inquilinos em minutos e alugue com confiança.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Explicação -->
+            <div class="explanation-section">
+                <h2>Como Funciona o Cálculo?</h2>
+                <p>Usamos métricas reais da plataforma para estimar seu prejuízo evitado:</p>
+                <ul>
+                    <li><strong>Inadimplência:</strong> Percentual de aluguel perdido com base no histórico de pagamentos.</li>
+                    <li><strong>Danos ao Imóvel:</strong> Custos de reparos estimados por incidentes reportados.</li>
+                    <li><strong>Custos Extras:</strong> Multas ou processos por má convivência.</li>
+                </ul>
+                <p>Compare o cenário de um "mau inquilino" com um "bom inquilino" e veja o quanto você ganha ao usar nossa plataforma!</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'91b44ae50cb46742',t:'MTc0MTEyMTkxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
