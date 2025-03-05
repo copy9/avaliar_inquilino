@@ -1948,3 +1948,82 @@ body {
     object-fit: cover;
     border: 2px solid #3498db;
 }
+
+/* Estilos para o menu sanduíche */
+.hamburger {
+    display: none; /* Escondido por padrão em telas grandes */
+    font-size: 2rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+/* Ajuste da navbar para suportar o menu sanduíche */
+.navbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Media Query para telas pequenas (até 768px) */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block; /* Exibe o ícone em telas pequenas */
+    }
+
+    .nav-menu {
+        display: none; /* Esconde o menu por padrão em telas pequenas */
+        position: absolute;
+        top: 100%; /* Posiciona abaixo da navbar */
+        left: 0;
+        right: 0;
+        background-color: #2c3e50; /* Mesma cor da navbar */
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+    }
+
+    .nav-menu.active {
+        display: flex; /* Exibe o menu quando ativo */
+    }
+
+    .nav-menu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-login, .btn-cadastro {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    /* Ajuste do layout da navbar */
+    .navbar {
+        justify-content: space-between;
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+}
+
+/* Ajuste adicional para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+    .hamburger {
+        font-size: 1.5rem;
+    }
+
+    .nav-menu {
+        padding: 0.5rem 0;
+    }
+
+    .nav-menu a {
+        font-size: 0.9rem;
+    }
+}
