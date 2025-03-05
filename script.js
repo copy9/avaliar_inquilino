@@ -612,3 +612,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Lógica existente do dashboard (modais, etc.) continua aqui...
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    // Criar o botão hamburger dinamicamente
+    const navbar = document.querySelector('.navbar');
+    const navMenu = document.querySelector('.nav-menu');
+    const hamburger = document.createElement('button');
+    hamburger.classList.add('hamburger');
+    hamburger.innerHTML = '☰'; // Símbolo de hamburger (três linhas)
+    navbar.insertBefore(hamburger, navMenu); // Insere antes do nav-menu
+
+    // Toggle do menu ao clicar no hamburger
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Fechar o menu ao clicar fora dele
+    document.addEventListener('click', (e) => {
+        if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+        }
+    });
+});
